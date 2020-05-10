@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PrivateBlog.Models.Blogs>
+@{
+    ViewBag.Title = "Index";
+}
+@foreach (var material in Model)
+{
+        var x = material.BlogContext.Substring(0, material.BlogContext.Length / 10)+"...";
+
+    <div class="BlogBlock">
+        <div class="blogName">@Html.DisplayFor(blogName => material.BlogName)</div>
+        <br />
+        <div class="blogDesc">@Html.DisplayFor(blogDescription => x)</div>
+        @Html.ActionLink("Read More", "BlogDetails", new { id = material.id })
+    </div>
+}
+
+<style>
+    .BlogBlock{
+        margin-top:2rem;
+        margin-bottom:2.4rem;
+        width:75%;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .blogDesc{
+        font-size:1.6rem;
+        font-weight:300;
+        margin-bottom:1rem;
+        margin-top:1rem;
+
+    }
+    .blogName{
+        font-size:3rem;
+        font-weight:600;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+</style>

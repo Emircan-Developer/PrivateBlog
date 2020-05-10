@@ -1,0 +1,35 @@
+﻿@model PrivateBlog.Models.Blogs
+
+@{
+    ViewBag.Title = "BlogDetails";
+}
+
+    <h2 class="blogName">
+        @Html.DisplayFor(model => model.BlogName)
+    </h2>
+
+    <div>
+
+        <hr />
+
+
+
+        <div> @Html.Raw(Html.Encode(Model.BlogContext).Replace(Environment.NewLine, "<br/>"))</div>
+
+
+        <div> @Html.DisplayFor(model => model.date)</div>
+
+    </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<style>
+    
+
+    .blogName {
+        font-size: 3rem;
+        font-weight: 600;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+</style>
