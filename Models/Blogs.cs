@@ -12,6 +12,8 @@ namespace PrivateBlog.Models
         public int id { get; set; }
         public string BlogName { get; set; }
         public string BlogContext { get; set; }
+        public string UploadImage { get; set; }
+
         public DateTime date { get; set; }
     }
 }

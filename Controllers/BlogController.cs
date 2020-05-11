@@ -1,6 +1,7 @@
 ﻿using PrivateBlog.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -36,10 +37,23 @@ namespace PrivateBlog.Controllers
 
         //Post : Create Blog
         [HttpPost]
-        public ActionResult CreateBlog([Bind(Include = "BlogName,BlogContext")] Blogs blogs)
+        public ActionResult CreateBlog([Bind(Include = "BlogName,BlogContext")] Blogs blogs,HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                if(Image != null )
+                {
+                    var path = Path.Combine(Server.MapPath("~/src/"), Image.FileName);
+
+                    if (db.db.Find(path) == null) { 
+                        Image.SaveAs(path);
+                        blogs.UploadImage = path;
+                    }
+                    else
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.Unused);
+                    }
+                }
                 blogs.date = DateTime.Today;
                 db.db.Add(blogs);
                 db.SaveChanges();
