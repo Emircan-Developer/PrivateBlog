@@ -45,14 +45,15 @@ namespace PrivateBlog.Controllers
                 {
                     var path = Path.Combine(Server.MapPath("~/src/"), Image.FileName);
 
-                    if (db.db.Find(path) == null) { 
+                //    if (db.db.Find(path) == null) { 
                         Image.SaveAs(path);
-                        blogs.UploadImage = path;
-                    }
-                    else
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.Unused);
-                    }
+                     blogs.UploadImage = "~/src/" + Image.FileName;
+
+                    //  }
+                    /*  else
+                      {
+                          return new HttpStatusCodeResult(HttpStatusCode.Unused);
+                      }*/
                 }
                 blogs.date = DateTime.Today;
                 db.db.Add(blogs);

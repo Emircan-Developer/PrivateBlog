@@ -7,9 +7,17 @@
         var x = material.BlogContext.Substring(0, material.BlogContext.Length / 10)+"...";
 
     <div class="BlogBlock">
+
         <div class="blogName">@Html.DisplayFor(blogName => material.BlogName)</div>
         <br />
+        @if (material.UploadImage != null)
+        {
+            <img src="@Url.Content(material.UploadImage)" class="img-responsive" style="margin-left:auto;margin-right:auto;" />
+        }
+
+        <br />
         <div class="blogDesc">@Html.DisplayFor(blogDescription => x)</div>
+
         @Html.ActionLink("Read More", "BlogDetails", new { id = material.id })
     </div>
 }
